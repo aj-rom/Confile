@@ -1,0 +1,13 @@
+io\coachluck\core\serialization\DelegateDeserialization.class
+io\coachluck\core\file\FileConfigurationOptions.class
+io\coachluck\core\serialization\SerializableAs.class
+io\coachluck\core\ConfigurationSection.class
+io\coachluck\core\MemorySection.class
+io\coachluck\core\serialization\ConfigurationSerialization.class
+io\coachluck\core\file\FileConfiguration.class
+io\coachluck\core\Configuration.class
+io\coachluck\core\ConfigurationOptions.class
+io\coachluck\core\serialization\ConfigurationSerializable.class
+io\coachluck\core\MemoryConfiguration.class
+io\coachluck\core\MemoryConfigurationOptions.class
+io\coachluck\core\InvalidConfigurationException.class

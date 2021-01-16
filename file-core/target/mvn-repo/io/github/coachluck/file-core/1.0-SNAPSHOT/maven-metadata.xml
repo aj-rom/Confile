@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata modelVersion="1.1.0">
   <groupId>io.github.coachluck</groupId>
-  <artifactId>yaml-config</artifactId>
+  <artifactId>file-core</artifactId>
   <version>1.0-SNAPSHOT</version>
   <versioning>
     <snapshot>
-      <timestamp>20210116.235417</timestamp>
-      <buildNumber>2</buildNumber>
+      <timestamp>20210116.235408</timestamp>
+      <buildNumber>1</buildNumber>
     </snapshot>
-    <lastUpdated>20210116235417</lastUpdated>
+    <lastUpdated>20210116235408</lastUpdated>
     <snapshotVersions>
       <snapshotVersion>
         <extension>jar</extension>
-        <value>1.0-20210116.235417-2</value>
-        <updated>20210116235417</updated>
+        <value>1.0-20210116.235408-1</value>
+        <updated>20210116235408</updated>
       </snapshotVersion>
       <snapshotVersion>
         <extension>pom</extension>
-        <value>1.0-20210116.235417-2</value>
-        <updated>20210116235417</updated>
+        <value>1.0-20210116.235408-1</value>
+        <updated>20210116235408</updated>
       </snapshotVersion>
     </snapshotVersions>
   </versioning>
