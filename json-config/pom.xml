@@ -21,7 +21,7 @@
         <repository>
             <id>main.repo</id>
             <name>Temporary Staging Repository</name>
-            <url>file://${project.build.directory}/mvn-repo</url>
+            <url>io.coachluck.yaml.file://${project.build.directory}/mvn-repo</url>
         </repository>
     </distributionManagement>
 

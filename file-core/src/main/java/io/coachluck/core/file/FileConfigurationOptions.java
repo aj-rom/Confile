@@ -1,7 +1,7 @@
-package core.file;
+package io.coachluck.core.file;
 
-import core.MemoryConfiguration;
-import core.MemoryConfigurationOptions;
+import io.coachluck.core.MemoryConfiguration;
+import io.coachluck.core.MemoryConfigurationOptions;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

@@ -1,4 +1,4 @@
-package file;
+package io.coachluck.yaml.file;
 
 import core.ConfigurationSection;
 import core.InvalidConfigurationException;

@@ -1,7 +1,7 @@
-# Compiled class file
+# Compiled class io.coachluck.yaml.file
 *.class
 
-# Log file
+# Log io.coachluck.yaml.file
 *.log
 
 # BlueJ files
