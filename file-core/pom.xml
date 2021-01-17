@@ -24,7 +24,6 @@
                 <version>3.4.2</version>
             </extension>
         </extensions>
-
     </build>
 
     <dependencies>
