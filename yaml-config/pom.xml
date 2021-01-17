@@ -27,6 +27,16 @@
         </repository>
     </distributionManagement>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.github.coachluck</groupId>
+                <artifactId>core</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <build>
         <plugins>
             <plugin>
@@ -78,7 +88,7 @@
     <dependencies>
         <dependency>
             <groupId>io.github.coachluck</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>file-core</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
 
@@ -86,6 +96,11 @@
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
             <version>1.27</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
         </dependency>
     </dependencies>
 </project>
