@@ -4,7 +4,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>io.github.coachluck</groupId>
+  <groupId>io.coachluck</groupId>
   <artifactId>file-config</artifactId>
   <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
@@ -13,9 +13,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
-    <github.global.server>github</github.global.server>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
   </properties>
 
   <modules>
@@ -23,6 +22,14 @@
     <module>json-config</module>
     <module>yaml-config</module>
   </modules>
+
+  <distributionManagement>
+    <repository>
+      <id>main-repo</id>
+      <name>File Core Repository</name>
+      <url>ftp://coachluck.io/mvn_repo/file-config/</url>
+    </repository>
+  </distributionManagement>
 
   <dependencyManagement>
       <dependencies>
@@ -41,13 +48,19 @@
         </dependency>
 
         <dependency>
-          <groupId>io.github.coachluck</groupId>
+          <groupId>io.coachluck</groupId>
+          <artifactId>file-config</artifactId>
+          <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+          <groupId>io.coachluck</groupId>
           <artifactId>yaml-config</artifactId>
           <version>${project.version}</version>
         </dependency>
 
         <dependency>
-          <groupId>io.github.coachluck</groupId>
+          <groupId>io.coachluck</groupId>
           <artifactId>json-config</artifactId>
           <version>${project.version}</version>
         </dependency>
