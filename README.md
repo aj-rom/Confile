@@ -1,5 +1,5 @@
 # file-config
-Converts any file into a quarriable object. Specifically focused on getting and setting strings of a key/value pair.
+A Java library that converts any file into a quarriable object. Specifically focused on getting and setting strings of a key/value pair.
 
 **Currently Supported Types**:
 - [X] YAML
