@@ -1,10 +1,10 @@
 package io.coachluck.yaml.file;
 
-import core.ConfigurationSection;
-import core.InvalidConfigurationException;
-import core.Configuration;
+import io.coachluck.core.ConfigurationSection;
+import io.coachluck.core.InvalidConfigurationException;
+import io.coachluck.core.Configuration;
 
-import core.file.FileConfiguration;
+import io.coachluck.core.file.FileConfiguration;
 import org.jetbrains.annotations.NotNull;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.LoaderOptions;

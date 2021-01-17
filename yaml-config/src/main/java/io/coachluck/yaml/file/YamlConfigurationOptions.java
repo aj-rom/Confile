@@ -1,6 +1,6 @@
 package io.coachluck.yaml.file;
 
-import core.file.FileConfigurationOptions;
+import io.coachluck.core.file.FileConfigurationOptions;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

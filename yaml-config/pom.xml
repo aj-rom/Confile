@@ -88,9 +88,8 @@
     <dependencies>
         <dependency>
             <groupId>io.github.coachluck</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>file-core</artifactId>
             <version>${project.parent.version}</version>
-            <scope>import</scope>
         </dependency>
 
         <dependency>

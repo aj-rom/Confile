@@ -1,8 +1,8 @@
 package io.coachluck.yaml.file;
 
-import core.ConfigurationSection;
-import core.serialization.ConfigurationSerializable;
-import core.serialization.ConfigurationSerialization;
+import io.coachluck.core.ConfigurationSection;
+import io.coachluck.core.serialization.ConfigurationSerializable;
+import io.coachluck.core.serialization.ConfigurationSerialization;
 import org.jetbrains.annotations.NotNull;
 import org.yaml.snakeyaml.nodes.Node;
 import org.yaml.snakeyaml.representer.Representer;
