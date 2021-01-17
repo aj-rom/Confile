@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>file-core</artifactId>
+    <artifactId>json-config</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -27,7 +27,6 @@
 
     <build>
         <plugins>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
@@ -44,7 +43,7 @@
                 <artifactId>maven-deploy-plugin</artifactId>
                 <version>2.8.2</version>
                 <configuration>
-                    <altDeploymentRepository>main.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
+                    <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
                 </configuration>
             </plugin>
 
@@ -53,12 +52,12 @@
                 <artifactId>site-maven-plugin</artifactId>
                 <version>0.12</version>
                 <configuration>
-                    <message>Creating site for ${project.version}</message>
+                    <message>Creating site for ${project.name} v${project.version}</message>
                     <noJekyll>true</noJekyll>                                  <!-- disable webpage processing -->
                     <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory> <!-- matches distribution management repository url above -->
                     <branch>refs/heads/mvn-repo</branch>                       <!-- remote branch name -->
                     <includes><include>**/*</include></includes>
-                    <repositoryName>trans-yml</repositoryName>
+                    <repositoryName>${project.name}</repositoryName>
                     <repositoryOwner>CoachLuck</repositoryOwner>
                 </configuration>
                 <executions>
@@ -70,16 +69,17 @@
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
     </build>
 
     <dependencies>
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <version>19.0.0</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
 
+        <dependency>
+            <groupId>io.github.coachluck</groupId>
+            <artifactId>core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+    </dependencies>
 </project>
