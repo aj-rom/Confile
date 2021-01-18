@@ -1,7 +1,7 @@
 /*
  *   Project: Confile
  *   File: MemoryConfigurationOptions.java
- *   Last Modified: 1/17/21, 5:37 PM
+ *   Last Modified: 1/17/21, 8:16 PM
  *
  *    Copyright 2021 AJ Romaniello
  *
@@ -30,7 +30,7 @@ public class MemoryConfigurationOptions extends ConfigurationOptions {
 
     @NotNull
     public MemoryConfiguration configuration() {
-        return (MemoryConfiguration)super.configuration();
+        return (MemoryConfiguration) super.configuration();
     }
 
     @NotNull

@@ -1,7 +1,7 @@
 /*
  *   Project: Confile
  *   File: YamlRepresenter.java
- *   Last Modified: 1/17/21, 5:37 PM
+ *   Last Modified: 1/17/21, 7:43 PM
  *
  *    Copyright 2021 AJ Romaniello
  *
@@ -54,9 +54,10 @@ public class YamlRepresenter extends Representer {
         @NotNull
         public Node representData(@NotNull Object data) {
             ConfigurationSerializable serializable = (ConfigurationSerializable) data;
-            Map<String, Object> values = new LinkedHashMap();
+            Map<String, Object> values = new LinkedHashMap<>();
             values.put("==", ConfigurationSerialization.getAlias(serializable.getClass()));
             values.putAll(serializable.serialize());
+
             return super.representData(values);
         }
     }

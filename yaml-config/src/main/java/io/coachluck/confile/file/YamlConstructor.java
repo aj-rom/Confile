@@ -1,7 +1,7 @@
 /*
  *   Project: Confile
  *   File: YamlConstructor.java
- *   Last Modified: 1/17/21, 5:37 PM
+ *   Last Modified: 1/17/21, 8:18 PM
  *
  *    Copyright 2021 AJ Romaniello
  *
@@ -21,11 +21,6 @@
 
 package io.coachluck.confile.file;
 
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import io.coachluck.confile.serialization.ConfigurationSerialization;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -33,6 +28,10 @@ import org.yaml.snakeyaml.constructor.SafeConstructor;
 import org.yaml.snakeyaml.error.YAMLException;
 import org.yaml.snakeyaml.nodes.Node;
 import org.yaml.snakeyaml.nodes.Tag;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class YamlConstructor extends SafeConstructor {
     public YamlConstructor() {
@@ -47,15 +46,13 @@ public class YamlConstructor extends SafeConstructor {
             if (node.isTwoStepsConstruction()) {
                 throw new YAMLException("Unexpected referential mapping structure. Node: " + node);
             } else {
-                Map<?, ?> raw = (Map)super.construct(node);
+                Map<?, ?> raw = (Map) super.construct(node);
                 if (!raw.containsKey("==")) {
                     return raw;
                 } else {
-                    Map<String, Object> typed = new LinkedHashMap(raw.size());
-                    Iterator var5 = raw.entrySet().iterator();
+                    Map<String, Object> typed = new LinkedHashMap<>(raw.size());
 
-                    while(var5.hasNext()) {
-                        Entry<?, ?> entry = (Entry)var5.next();
+                    for (Entry<?, ?> entry : raw.entrySet()) {
                         typed.put(entry.getKey().toString(), entry.getValue());
                     }
 

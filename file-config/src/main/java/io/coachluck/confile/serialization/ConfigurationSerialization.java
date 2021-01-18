@@ -1,7 +1,7 @@
 /*
  *   Project: Confile
  *   File: ConfigurationSerialization.java
- *   Last Modified: 1/17/21, 5:37 PM
+ *   Last Modified: 1/17/21, 8:16 PM
  *
  *    Copyright 2021 AJ Romaniello
  *
@@ -86,7 +86,7 @@ public class ConfigurationSerialization {
     @Nullable
     protected ConfigurationSerializable deserializeViaCtor(@NotNull Constructor<? extends ConfigurationSerializable> ctor, @NotNull Map<String, ?> args) {
         try {
-            return (ConfigurationSerializable)ctor.newInstance(args);
+            return ctor.newInstance(args);
         } catch (Throwable var4) {
             Logger.getLogger(ConfigurationSerialization.class.getName()).log(Level.SEVERE,
                     "Could not call constructor '" + ctor.toString() + "' of " + this.clazz + " for deserialization", var4 instanceof InvocationTargetException ? var4.getCause() : var4);
@@ -97,12 +97,9 @@ public class ConfigurationSerialization {
     @Nullable
     public ConfigurationSerializable deserialize(@NotNull Map<String, ?> args) {
         ConfigurationSerializable result = null;
-        Method method = null;
-        if (result == null) {
-            method = this.getMethod("deserialize", true);
-            if (method != null) {
-                result = this.deserializeViaMethod(method, args);
-            }
+        Method method = this.getMethod("deserialize", true);
+        if (method != null) {
+            result = this.deserializeViaMethod(method, args);
         }
 
         if (result == null) {
@@ -129,7 +126,7 @@ public class ConfigurationSerialization {
 
     @Nullable
     public static ConfigurationSerializable deserializeObject(@NotNull Map<String, ?> args) {
-        Class<? extends ConfigurationSerializable> clazz = null;
+        Class<? extends ConfigurationSerializable> clazz;
         if (args.containsKey("==")) {
             try {
                 String alias = (String)args.get("==");
@@ -158,7 +155,6 @@ public class ConfigurationSerialization {
             registerClass(clazz, getAlias(clazz));
             registerClass(clazz, clazz.getName());
         }
-
     }
 
     public static void registerClass(@NotNull Class<? extends ConfigurationSerializable> clazz, @NotNull String alias) {
@@ -182,18 +178,16 @@ public class ConfigurationSerialization {
     public static String getAlias(@NotNull Class<? extends ConfigurationSerializable> clazz) {
         DelegateDeserialization delegate = clazz.getAnnotation(DelegateDeserialization.class);
         if (delegate != null) {
-            if (delegate.value() != null && delegate.value() != clazz) {
+            if (delegate.value() != clazz) {
                 return getAlias(delegate.value());
             }
 
             delegate = null;
         }
 
-        if (delegate == null) {
-            SerializableAs alias = clazz.getAnnotation(SerializableAs.class);
-            if (alias != null && alias.value() != null) {
-                return alias.value();
-            }
+        SerializableAs alias = clazz.getAnnotation(SerializableAs.class);
+        if (alias != null) {
+            return alias.value();
         }
 
         return clazz.getName();

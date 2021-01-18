@@ -1,7 +1,7 @@
 /*
  *   Project: Confile
  *   File: InvalidConfigurationException.java
- *   Last Modified: 1/17/21, 5:37 PM
+ *   Last Modified: 1/17/21, 8:16 PM
  *
  *    Copyright 2021 AJ Romaniello
  *
@@ -22,8 +22,8 @@
 package io.coachluck.confile;
 
 public class InvalidConfigurationException extends Exception {
-    public InvalidConfigurationException() {
-    }
+
+    public InvalidConfigurationException() { }
 
     public InvalidConfigurationException(String msg) {
         super(msg);

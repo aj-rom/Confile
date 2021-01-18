@@ -1,7 +1,7 @@
 /*
  *   Project: Confile
  *   File: MemoryConfiguration.java
- *   Last Modified: 1/17/21, 5:37 PM
+ *   Last Modified: 1/17/21, 8:18 PM
  *
  *    Copyright 2021 AJ Romaniello
  *
@@ -21,11 +21,11 @@
 
 package io.coachluck.confile;
 
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class MemoryConfiguration extends MemorySection implements Configuration {
     protected Configuration defaults;
@@ -47,13 +47,9 @@ public class MemoryConfiguration extends MemorySection implements Configuration 
     }
 
     public void addDefaults(@NotNull Map<String, Object> defaults) {
-        Iterator var3 = defaults.entrySet().iterator();
-
-        while(var3.hasNext()) {
-            Entry<String, Object> entry = (Entry) var3.next();
-            this.addDefault(entry.getKey(), entry.getValue());
+        for (Entry<String, Object> strObjEntry : defaults.entrySet()) {
+            this.addDefault(strObjEntry.getKey(), strObjEntry.getValue());
         }
-
     }
 
     public void addDefaults(@NotNull Configuration defaults) {

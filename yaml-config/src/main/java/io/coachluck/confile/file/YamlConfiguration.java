@@ -1,7 +1,7 @@
 /*
  *   Project: Confile
  *   File: YamlConfiguration.java
- *   Last Modified: 1/17/21, 5:37 PM
+ *   Last Modified: 1/17/21, 8:18 PM
  *
  *    Copyright 2021 AJ Romaniello
  *
@@ -21,15 +21,14 @@
 
 package io.coachluck.confile.file;
 
+import io.coachluck.confile.Configuration;
 import io.coachluck.confile.ConfigurationSection;
 import io.coachluck.confile.InvalidConfigurationException;
-import io.coachluck.confile.Configuration;
-
 import org.jetbrains.annotations.NotNull;
 import org.yaml.snakeyaml.DumperOptions;
+import org.yaml.snakeyaml.DumperOptions.FlowStyle;
 import org.yaml.snakeyaml.LoaderOptions;
 import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.DumperOptions.FlowStyle;
 import org.yaml.snakeyaml.error.YAMLException;
 import org.yaml.snakeyaml.representer.Representer;
 
@@ -37,7 +36,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.Iterator;
 import java.util.Map;
 
 public class YamlConfiguration extends FileConfiguration {
@@ -71,9 +69,9 @@ public class YamlConfiguration extends FileConfiguration {
         try {
             this.loaderOptions.setMaxAliasesForCollections(2147483647);
             input = this.yaml.load(contents);
-        } catch (YAMLException var4) {
-            throw new InvalidConfigurationException(var4);
-        } catch (ClassCastException var5) {
+        } catch (YAMLException e) {
+            throw new InvalidConfigurationException(e);
+        } catch (ClassCastException e) {
             throw new InvalidConfigurationException("Top level is not a Map.");
         }
 
@@ -90,12 +88,11 @@ public class YamlConfiguration extends FileConfiguration {
     }
 
     protected void convertMapsToSections(@NotNull Map<?, ?> input, @NotNull ConfigurationSection section) {
-        Iterator var4 = input.entrySet().iterator();
 
-        while(var4.hasNext()) {
-            Map.Entry<?, ?> entry = (Map.Entry) var4.next();
-            String key = entry.getKey().toString();
-            Object value = entry.getValue();
+        for (Map.Entry<?, ?> item : input.entrySet()) {
+            String key = item.getKey().toString();
+            Object value = item.getValue();
+
             if (value instanceof Map) {
                 this.convertMapsToSections((Map) value, section.createSection(key));
             } else {
@@ -139,18 +136,17 @@ public class YamlConfiguration extends FileConfiguration {
         String header = this.options().header();
         if (this.options().copyHeader()) {
             Configuration def = this.getDefaults();
-            if (def != null && def instanceof FileConfiguration) {
+            if (def instanceof FileConfiguration) {
                 FileConfiguration filedefaults = (FileConfiguration)def;
                 String defaultsHeader = filedefaults.buildHeader();
-                if (defaultsHeader != null && defaultsHeader.length() > 0) {
+
+                if (defaultsHeader.length() > 0) {
                     return defaultsHeader;
                 }
             }
         }
 
-        if (header == null) {
-            return "";
-        } else {
+        if (header != null) {
             StringBuilder builder = new StringBuilder();
             String[] lines = header.split("\r?\n", -1);
             boolean startedHeader = false;
@@ -165,6 +161,8 @@ public class YamlConfiguration extends FileConfiguration {
             }
 
             return builder.toString();
+        } else {
+            return "";
         }
     }
 
@@ -174,7 +172,7 @@ public class YamlConfiguration extends FileConfiguration {
             this.options = new YamlConfigurationOptions(this);
         }
 
-        return (YamlConfigurationOptions)this.options;
+        return (YamlConfigurationOptions) this.options;
     }
 
     @NotNull
@@ -183,9 +181,9 @@ public class YamlConfiguration extends FileConfiguration {
 
         try {
             config.load(file);
-        } catch (FileNotFoundException var3) {
-        } catch (IOException | InvalidConfigurationException var4) {
-            System.out.println("Cannot load " + file + "\n" + var4);
+        } catch (FileNotFoundException ignored) {
+        } catch (IOException | InvalidConfigurationException e) {
+            System.out.println("Cannot load " + file + "\n" + e);
         }
 
         return config;
@@ -197,8 +195,8 @@ public class YamlConfiguration extends FileConfiguration {
 
         try {
             config.load(reader);
-        } catch (IOException | InvalidConfigurationException var3) {
-            System.out.println("Cannot load configuration from stream: \n" + var3);
+        } catch (IOException | InvalidConfigurationException e) {
+            System.out.println("Cannot load configuration from stream: \n" + e);
         }
 
         return config;
