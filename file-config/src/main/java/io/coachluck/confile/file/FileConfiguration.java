@@ -1,7 +1,7 @@
 /*
  *   Project: Confile
  *   File: FileConfiguration.java
- *   Last Modified: 1/17/21, 5:37 PM
+ *   Last Modified: 1/17/21, 8:41 PM
  *
  *    Copyright 2021 AJ Romaniello
  *
@@ -39,13 +39,17 @@ import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 
 public abstract class FileConfiguration extends MemoryConfiguration {
-    public FileConfiguration() {
-    }
+    public FileConfiguration() { }
 
     public FileConfiguration(@Nullable Configuration defaults) {
         super(defaults);
     }
 
+    /**
+     *
+     * @param file
+     * @throws IOException
+     */
     public void save(@NotNull File file) throws IOException {
         file.getParentFile().mkdirs();
         String data = this.saveToString();
@@ -59,18 +63,40 @@ public abstract class FileConfiguration extends MemoryConfiguration {
 
     }
 
+    /**
+     *
+     * @param file
+     * @throws IOException
+     */
     public void save(@NotNull String file) throws IOException {
         this.save(new File(file));
     }
 
+    /**
+     *
+     * @return
+     */
     @NotNull
     public abstract String saveToString();
 
+    /**
+     *
+     * @param file
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws InvalidConfigurationException
+     */
     public void load(@NotNull File file) throws FileNotFoundException, IOException, InvalidConfigurationException {
         FileInputStream stream = new FileInputStream(file);
         this.load(new InputStreamReader(stream, StandardCharsets.UTF_8));
     }
 
+    /**
+     *
+     * @param reader
+     * @throws IOException
+     * @throws InvalidConfigurationException
+     */
     public void load(@NotNull Reader reader) throws IOException, InvalidConfigurationException {
         BufferedReader input = reader instanceof BufferedReader ? (BufferedReader) reader : new BufferedReader(reader);
         StringBuilder builder = new StringBuilder();
@@ -88,11 +114,22 @@ public abstract class FileConfiguration extends MemoryConfiguration {
         this.loadFromString(builder.toString());
     }
 
+    /**
+     *
+     * @param file
+     * @throws IOException
+     * @throws InvalidConfigurationException
+     */
     public void load(@NotNull String file) throws IOException, InvalidConfigurationException {
         this.load(new File(file));
     }
 
-    public abstract void loadFromString(@NotNull String var1) throws InvalidConfigurationException;
+    /**
+     *
+     * @param str
+     * @throws InvalidConfigurationException
+     */
+    public abstract void loadFromString(@NotNull String str) throws InvalidConfigurationException;
 
     @NotNull
     public abstract String buildHeader();

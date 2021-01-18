@@ -1,7 +1,7 @@
 /*
  *   Project: Confile
  *   File: YamlRepresenter.java
- *   Last Modified: 1/17/21, 7:43 PM
+ *   Last Modified: 1/17/21, 8:38 PM
  *
  *    Copyright 2021 AJ Romaniello
  *
@@ -32,6 +32,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class YamlRepresenter extends Representer {
+
     public YamlRepresenter() {
         this.multiRepresenters.put(ConfigurationSection.class, new RepresentConfigurationSection());
         this.multiRepresenters.put(ConfigurationSerializable.class, new RepresentConfigurationSerializable());
@@ -39,8 +40,7 @@ public class YamlRepresenter extends Representer {
     }
 
     private class RepresentConfigurationSection extends RepresentMap {
-        private RepresentConfigurationSection() {
-        }
+        private RepresentConfigurationSection() { }
 
         @NotNull
         public Node representData(@NotNull Object data) {

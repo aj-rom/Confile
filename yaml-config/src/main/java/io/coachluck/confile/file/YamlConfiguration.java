@@ -1,7 +1,7 @@
 /*
  *   Project: Confile
  *   File: YamlConfiguration.java
- *   Last Modified: 1/17/21, 8:18 PM
+ *   Last Modified: 1/17/21, 8:38 PM
  *
  *    Copyright 2021 AJ Romaniello
  *
@@ -46,10 +46,17 @@ public class YamlConfiguration extends FileConfiguration {
     private final Representer yamlRepresenter = new YamlRepresenter();
     private final Yaml yaml;
 
+    /**
+     * Creates a new YamlConfiguration object
+     */
     public YamlConfiguration() {
         this.yaml = new Yaml(new YamlConstructor(), this.yamlRepresenter, this.yamlOptions, this.loaderOptions);
     }
 
+    /**
+     * Saves the YamlConfiguration Object as a string
+     * @return the YamlConfiguration as a string
+     */
     @NotNull
     public String saveToString() {
         this.yamlOptions.setIndent(this.options().indent());
@@ -57,13 +64,18 @@ public class YamlConfiguration extends FileConfiguration {
         this.yamlRepresenter.setDefaultFlowStyle(FlowStyle.BLOCK);
         String header = this.buildHeader();
         String dump = this.yaml.dump(this.getValues(false));
-        if (dump.equals("{}\n")) {
+        if (dump.equals(BLANK_CONFIG)) {
             dump = "";
         }
 
         return header + dump;
     }
 
+    /**
+     * Loads the YamlConfiguration contents from a string
+     * @param contents the contents to add to the YamlConfiguration
+     * @throws InvalidConfigurationException on YAMLException and when top level is not a Map
+     */
     public void loadFromString(@NotNull String contents) throws InvalidConfigurationException {
         Map input;
         try {
@@ -84,7 +96,6 @@ public class YamlConfiguration extends FileConfiguration {
         if (input != null) {
             this.convertMapsToSections(input, this);
         }
-
     }
 
     protected void convertMapsToSections(@NotNull Map<?, ?> input, @NotNull ConfigurationSection section) {
@@ -99,7 +110,6 @@ public class YamlConfiguration extends FileConfiguration {
                 section.set(key, value);
             }
         }
-
     }
 
     @NotNull
@@ -111,13 +121,13 @@ public class YamlConfiguration extends FileConfiguration {
 
         for(int i = 0; i < lines.length && readingHeader; ++i) {
             String line = lines[i];
-            if (line.startsWith("# ")) {
+            if (line.startsWith(COMMENT_PREFIX)) {
                 if (i > 0) {
                     result.append("\n");
                 }
 
-                if (line.length() > "# ".length()) {
-                    result.append(line.substring("# ".length()));
+                if (line.length() > COMMENT_PREFIX.length()) {
+                    result.append(line.substring(COMMENT_PREFIX.length()));
                 }
 
                 foundHeader = true;
@@ -131,6 +141,10 @@ public class YamlConfiguration extends FileConfiguration {
         return result.toString();
     }
 
+    /**
+     * Builds the header of the YamlConfiguration
+     * @return the built header as a String
+     */
     @NotNull
     public String buildHeader() {
         String header = this.options().header();
@@ -155,7 +169,7 @@ public class YamlConfiguration extends FileConfiguration {
                 builder.insert(0, "\n");
                 if (startedHeader || lines[i].length() != 0) {
                     builder.insert(0, lines[i]);
-                    builder.insert(0, "# ");
+                    builder.insert(0, COMMENT_PREFIX);
                     startedHeader = true;
                 }
             }
@@ -166,6 +180,10 @@ public class YamlConfiguration extends FileConfiguration {
         }
     }
 
+    /**
+     * Get the YamlConfiguration options of the YamlConfiguration
+     * @return the YamlConfigurations options
+     */
     @NotNull
     public YamlConfigurationOptions options() {
         if (this.options == null) {
@@ -175,6 +193,11 @@ public class YamlConfiguration extends FileConfiguration {
         return (YamlConfigurationOptions) this.options;
     }
 
+    /**
+     * Loads a YamlConfiguration from a file
+     * @param file the file to load into a YamlConfiguration
+     * @return the file as a YamlConfiguration object.
+     */
     @NotNull
     public static YamlConfiguration loadConfiguration(@NotNull File file) {
         YamlConfiguration config = new YamlConfiguration();
@@ -189,6 +212,11 @@ public class YamlConfiguration extends FileConfiguration {
         return config;
     }
 
+    /**
+     * Loads a YamlConfiguration from a file
+     * @param reader the read to load into a YamlConfiguration
+     * @return the reader as a YamlConfiguration object.
+     */
     @NotNull
     public static YamlConfiguration loadConfiguration(@NotNull Reader reader) { ;
         YamlConfiguration config = new YamlConfiguration();
