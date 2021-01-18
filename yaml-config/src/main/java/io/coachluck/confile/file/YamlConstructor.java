@@ -1,11 +1,11 @@
-package io.coachluck.yaml.file;
+package io.coachluck.confile.file;
 
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import io.coachluck.core.serialization.ConfigurationSerialization;
+import io.coachluck.confile.serialization.ConfigurationSerialization;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.yaml.snakeyaml.constructor.SafeConstructor;

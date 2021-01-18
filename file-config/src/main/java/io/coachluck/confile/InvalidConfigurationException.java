@@ -1,4 +1,4 @@
-package io.coachluck.core;
+package io.coachluck.confile;
 
 public class InvalidConfigurationException extends Exception {
     public InvalidConfigurationException() {

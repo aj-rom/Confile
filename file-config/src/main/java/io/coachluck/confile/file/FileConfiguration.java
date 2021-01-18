@@ -1,8 +1,8 @@
-package io.coachluck.core.file;
+package io.coachluck.confile.file;
 
-import io.coachluck.core.Configuration;
-import io.coachluck.core.InvalidConfigurationException;
-import io.coachluck.core.MemoryConfiguration;
+import io.coachluck.confile.Configuration;
+import io.coachluck.confile.InvalidConfigurationException;
+import io.coachluck.confile.MemoryConfiguration;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

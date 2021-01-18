@@ -1,4 +1,4 @@
-import io.coachluck.yaml.file.YamlConfiguration;
+import io.coachluck.confile.file.YamlConfiguration;
 import org.junit.Test;
 
 public class TestYamlConfig {

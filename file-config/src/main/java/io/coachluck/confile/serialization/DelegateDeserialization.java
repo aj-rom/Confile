@@ -1,4 +1,4 @@
-package io.coachluck.core.serialization;
+package io.coachluck.confile.serialization;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
-public @interface SerializableAs {
+public @interface DelegateDeserialization {
     @NotNull
-    String value();
+    Class<? extends ConfigurationSerializable> value();
 }

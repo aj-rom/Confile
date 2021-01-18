@@ -1,4 +1,4 @@
-package io.coachluck.core.serialization;
+package io.coachluck.confile.serialization;
 
 import org.jetbrains.annotations.NotNull;
 

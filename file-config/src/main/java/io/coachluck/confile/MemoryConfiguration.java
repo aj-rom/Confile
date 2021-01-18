@@ -1,4 +1,4 @@
-package io.coachluck.core;
+package io.coachluck.confile;
 
 import java.util.Iterator;
 import java.util.Map;

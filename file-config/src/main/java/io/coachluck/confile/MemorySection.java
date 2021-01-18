@@ -1,4 +1,4 @@
-package io.coachluck.core;
+package io.coachluck.confile;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 
-import io.coachluck.core.serialization.ConfigurationSerializable;
+import io.coachluck.confile.serialization.ConfigurationSerializable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

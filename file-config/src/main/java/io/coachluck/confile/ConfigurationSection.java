@@ -1,10 +1,10 @@
-package io.coachluck.core;
+package io.coachluck.confile;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import io.coachluck.core.serialization.ConfigurationSerializable;
+import io.coachluck.confile.serialization.ConfigurationSerializable;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

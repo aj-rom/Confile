@@ -1,4 +1,4 @@
-package io.coachluck.core;
+package io.coachluck.confile;
 
 import org.jetbrains.annotations.NotNull;
 
