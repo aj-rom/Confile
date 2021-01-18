@@ -1,7 +1,7 @@
 /*
  *   Project: Confile
  *   File: MemorySection.java
- *   Last Modified: 1/17/21, 8:18 PM
+ *   Last Modified: 1/17/21, 8:48 PM
  *
  *    Copyright 2021 AJ Romaniello
  *
@@ -35,7 +35,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 public class MemorySection implements ConfigurationSection {
-    protected final Map<String, Object> map = new LinkedHashMap();
+    protected final Map<String, Object> map = new LinkedHashMap<>();
     private final Configuration root;
     private final ConfigurationSection parent;
     private final String path;
@@ -44,12 +44,12 @@ public class MemorySection implements ConfigurationSection {
     protected MemorySection() {
         if (!(this instanceof Configuration)) {
             throw new IllegalStateException("Cannot construct a root core.MemorySection when not a Configuration");
-        } else {
-            this.path = "";
-            this.fullPath = "";
-            this.parent = null;
-            this.root = (Configuration)this;
         }
+
+        this.path = "";
+        this.fullPath = "";
+        this.parent = null;
+        this.root = (Configuration) this;
     }
 
     protected MemorySection(@NotNull ConfigurationSection parent, @NotNull String path) {
