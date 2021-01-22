@@ -1,11 +1,10 @@
 # Confile
-A Java library that converts any file into a quarriable (FileConfiguration) object. Specifically focused on getting and setting strings of a key/value pair.
+A Java library that converts any .yml file into a quarriable (FileConfiguration) object. Specifically focused on getting and setting strings of a key/value pair.
 
 Doumenation can be found at my website [here](https://confile.coachluck.io).
 
 **Currently Supported Types**:
 - [X] YAML
-- [ ] JSON
 - [ ] TXT
 
 
@@ -41,21 +40,7 @@ Based off of your needs you can get any of the projects individually.
         <version>1.0-SNAPSHOT</version>
     </dependency>
     
-    <!-- JSON Configuration -->
-    <dependency>
-        <groupId>io.coachluck</groupId>
-        <artifactId>json-config</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </dependency>
-    
-</dependencies>
-```
-
-Or you can build your own extension of the main core file configuration system.
-```XML
-<dependencies>
-
-    <!-- FileConfiguration Core -->
+    <!-- OPTIONAL: FileConfiguration Core -->
     <dependency>
         <groupId>io.coachluck</groupId>
         <artifactId>file-config</artifactId>
