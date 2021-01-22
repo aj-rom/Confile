@@ -1,7 +1,7 @@
 /*
  *   Project: Confile
  *   File: MemorySection.java
- *   Last Modified: 1/17/21, 8:48 PM
+ *   Last Modified: 1/22/21, 2:17 PM
  *
  *    Copyright 2021 AJ Romaniello
  *
@@ -394,6 +394,11 @@ public class MemorySection implements ConfigurationSection {
         return this.getObject(path, clazz, def);
     }
 
+    /**
+     * Gets the configuration section at the provided path
+     * @param path the path to the configuration section
+     * @return the ConfigurationSection, null if not present
+     */
     @Nullable
     public ConfigurationSection getConfigurationSection(@NotNull String path) {
         Object val = this.get(path, (Object) null);
@@ -405,6 +410,11 @@ public class MemorySection implements ConfigurationSection {
         }
     }
 
+    /**
+     * Checks whether or not a configuration section exists at the path
+     * @param path the path to check
+     * @return true if ConfigurationSection, false if not
+     */
     public boolean isConfigurationSection(@NotNull String path) {
         Object val = this.get(path);
         return val instanceof ConfigurationSection;
@@ -475,6 +485,12 @@ public class MemorySection implements ConfigurationSection {
 
     }
 
+    /**
+     * Creates a path under the given key within the configuration section
+     * @param section the section you are creating the path in
+     * @param key the key to access this path from
+     * @return the full string of your configuration section
+     */
     @NotNull
     public static String createPath(@NotNull ConfigurationSection section, @Nullable String key) {
         return createPath(section, key, section.getRoot());
@@ -484,7 +500,7 @@ public class MemorySection implements ConfigurationSection {
     public static String createPath(@NotNull ConfigurationSection section, @Nullable String key, @Nullable ConfigurationSection relativeTo) {
         Configuration root = section.getRoot();
         if (root == null) {
-            throw new IllegalStateException("Cannot create path without a root");
+            throw new IllegalStateException("Can't create path without a root");
         } else {
             char separator = root.options().pathSeparator();
             StringBuilder builder = new StringBuilder();

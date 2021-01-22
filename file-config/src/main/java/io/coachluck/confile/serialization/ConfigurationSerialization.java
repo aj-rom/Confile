@@ -1,7 +1,7 @@
 /*
  *   Project: Confile
  *   File: ConfigurationSerialization.java
- *   Last Modified: 1/17/21, 8:16 PM
+ *   Last Modified: 1/22/21, 2:43 PM
  *
  *    Copyright 2021 AJ Romaniello
  *
@@ -48,10 +48,10 @@ public class ConfigurationSerialization {
             Method method = this.clazz.getDeclaredMethod(name, Map.class);
             if (!ConfigurationSerializable.class.isAssignableFrom(method.getReturnType())) {
                 return null;
-            } else {
-                return Modifier.isStatic(method.getModifiers()) != isStatic ? null : method;
             }
-        } catch (NoSuchMethodException | SecurityException var4) {
+
+            return Modifier.isStatic(method.getModifiers()) != isStatic ? null : method;
+        } catch (NoSuchMethodException | SecurityException e) {
             return null;
         }
     }
@@ -68,28 +68,31 @@ public class ConfigurationSerialization {
     @Nullable
     protected ConfigurationSerializable deserializeViaMethod(@NotNull Method method, @NotNull Map<String, ?> args) {
         try {
-            ConfigurationSerializable result = (ConfigurationSerializable)method.invoke((Object)null, args);
+            ConfigurationSerializable result = (ConfigurationSerializable) method.invoke(null, args);
             if (result != null) {
                 return result;
             }
 
             Logger.getLogger(ConfigurationSerialization.class.getName()).log(Level.SEVERE,
-                    "Could not call method '" + method.toString() + "' of " + this.clazz + " for deserialization: method returned null");
-        } catch (Throwable var4) {
+                    "Could not call method '" + method.toString() + "' of " + this.clazz
+                            + " for deserialization: method returned null");
+        } catch (Throwable e) {
             Logger.getLogger(ConfigurationSerialization.class.getName()).log(Level.SEVERE,
-                    "Could not call method '" + method.toString() + "' of " + this.clazz + " for deserialization", var4 instanceof InvocationTargetException ? var4.getCause() : var4);
+                    "Could not call method '" + method.toString() + "' of " + this.clazz + " for deserialization",
+                    e instanceof InvocationTargetException ? e.getCause() : e);
         }
 
         return null;
     }
 
     @Nullable
-    protected ConfigurationSerializable deserializeViaCtor(@NotNull Constructor<? extends ConfigurationSerializable> ctor, @NotNull Map<String, ?> args) {
+    protected ConfigurationSerializable deserializeViaCtor(@NotNull Constructor<? extends ConfigurationSerializable> struct, @NotNull Map<String, ?> args) {
         try {
-            return ctor.newInstance(args);
-        } catch (Throwable var4) {
+            return struct.newInstance(args);
+        } catch (Throwable e) {
             Logger.getLogger(ConfigurationSerialization.class.getName()).log(Level.SEVERE,
-                    "Could not call constructor '" + ctor.toString() + "' of " + this.clazz + " for deserialization", var4 instanceof InvocationTargetException ? var4.getCause() : var4);
+                    "Could not call constructor '" + struct.toString() + "' of " + this.clazz + " for deserialization",
+                    e instanceof InvocationTargetException ? e.getCause() : e);
             return null;
         }
     }
@@ -127,9 +130,9 @@ public class ConfigurationSerialization {
     @Nullable
     public static ConfigurationSerializable deserializeObject(@NotNull Map<String, ?> args) {
         Class<? extends ConfigurationSerializable> clazz;
-        if (args.containsKey("==")) {
+        if (args.containsKey(SERIALIZED_TYPE_KEY)) {
             try {
-                String alias = (String)args.get("==");
+                String alias = (String)args.get(SERIALIZED_TYPE_KEY);
                 if (alias == null) {
                     throw new IllegalArgumentException("Cannot have null alias");
                 }
@@ -138,15 +141,15 @@ public class ConfigurationSerialization {
                 if (clazz == null) {
                     throw new IllegalArgumentException("Specified class does not exist ('" + alias + "')");
                 }
-            } catch (ClassCastException var3) {
-                var3.fillInStackTrace();
-                throw var3;
+            } catch (ClassCastException e) {
+                e.fillInStackTrace();
+                throw e;
             }
 
             return (new ConfigurationSerialization(clazz)).deserialize(args);
-        } else {
-            throw new IllegalArgumentException("Args doesn't contain type key ('==')");
         }
+
+        throw new IllegalArgumentException("Args doesn't contain type key ('" + SERIALIZED_TYPE_KEY + "')");
     }
 
     public static void registerClass(@NotNull Class<? extends ConfigurationSerializable> clazz) {
@@ -186,10 +189,6 @@ public class ConfigurationSerialization {
         }
 
         SerializableAs alias = clazz.getAnnotation(SerializableAs.class);
-        if (alias != null) {
-            return alias.value();
-        }
-
-        return clazz.getName();
+        return alias != null ? alias.value() : clazz.getName();
     }
 }

@@ -1,7 +1,7 @@
 /*
  *   Project: Confile
  *   File: FileConfiguration.java
- *   Last Modified: 1/17/21, 8:41 PM
+ *   Last Modified: 1/22/21, 2:45 PM
  *
  *    Copyright 2021 AJ Romaniello
  *
@@ -125,9 +125,9 @@ public abstract class FileConfiguration extends MemoryConfiguration {
     }
 
     /**
-     *
-     * @param str
-     * @throws InvalidConfigurationException
+     * Load a FileConfiguration object from string contents
+     * @param str the file as a string
+     * @throws InvalidConfigurationException if invalid string or null
      */
     public abstract void loadFromString(@NotNull String str) throws InvalidConfigurationException;
 
@@ -140,6 +140,6 @@ public abstract class FileConfiguration extends MemoryConfiguration {
             this.options = new FileConfigurationOptions(this);
         }
 
-        return (FileConfigurationOptions)this.options;
+        return (FileConfigurationOptions) this.options;
     }
 }
