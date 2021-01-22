@@ -1,7 +1,7 @@
 /*
  *   Project: Confile
  *   File: MemoryConfiguration.java
- *   Last Modified: 1/17/21, 8:18 PM
+ *   Last Modified: 1/22/21, 2:37 PM
  *
  *    Copyright 2021 AJ Romaniello
  *
@@ -31,8 +31,7 @@ public class MemoryConfiguration extends MemorySection implements Configuration 
     protected Configuration defaults;
     protected MemoryConfigurationOptions options;
 
-    public MemoryConfiguration() {
-    }
+    public MemoryConfiguration() { }
 
     public MemoryConfiguration(@Nullable Configuration defaults) {
         this.defaults = defaults;

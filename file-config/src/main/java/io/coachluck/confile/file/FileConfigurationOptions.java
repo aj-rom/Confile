@@ -1,7 +1,7 @@
 /*
  *   Project: Confile
  *   File: FileConfigurationOptions.java
- *   Last Modified: 1/17/21, 5:37 PM
+ *   Last Modified: 1/22/21, 2:37 PM
  *
  *    Copyright 2021 AJ Romaniello
  *
@@ -46,8 +46,8 @@ public class FileConfigurationOptions extends MemoryConfigurationOptions {
     }
 
     @NotNull
-    public FileConfigurationOptions pathSeparator(char value) {
-        super.pathSeparator(value);
+    public FileConfigurationOptions pathSeparator(char c) {
+        super.pathSeparator(c);
         return this;
     }
 
@@ -57,8 +57,8 @@ public class FileConfigurationOptions extends MemoryConfigurationOptions {
     }
 
     @NotNull
-    public FileConfigurationOptions header(@Nullable String value) {
-        this.header = value;
+    public FileConfigurationOptions header(@Nullable String header) {
+        this.header = header;
         return this;
     }
 

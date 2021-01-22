@@ -1,7 +1,7 @@
 /*
  *   Project: Confile
  *   File: YamlConstructor.java
- *   Last Modified: 1/17/21, 8:18 PM
+ *   Last Modified: 1/19/21, 9:57 PM
  *
  *    Copyright 2021 AJ Romaniello
  *
@@ -34,6 +34,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class YamlConstructor extends SafeConstructor {
+
     public YamlConstructor() {
         this.yamlConstructors.put(Tag.MAP, new ConstructCustomObject());
     }

@@ -1,7 +1,7 @@
 /*
  *   Project: Confile
  *   File: Configuration.java
- *   Last Modified: 1/17/21, 6:15 PM
+ *   Last Modified: 1/22/21, 2:17 PM
  *
  *    Copyright 2021 AJ Romaniello
  *
@@ -27,13 +27,13 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Map;
 
 public interface Configuration extends ConfigurationSection {
-    void addDefault(@NotNull String var1, @Nullable Object var2);
+    void addDefault(@NotNull String key, @Nullable Object value);
 
-    void addDefaults(@NotNull Map<String, Object> var1);
+    void addDefaults(@NotNull Map<String, Object> map);
 
-    void addDefaults(@NotNull Configuration var1);
+    void addDefaults(@NotNull Configuration configuration);
 
-    void setDefaults(@NotNull Configuration var1);
+    void setDefaults(@NotNull Configuration configuration);
 
     @Nullable
     Configuration getDefaults();
