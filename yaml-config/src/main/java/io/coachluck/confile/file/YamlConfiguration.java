@@ -1,7 +1,7 @@
 /*
  *   Project: Confile
  *   File: YamlConfiguration.java
- *   Last Modified: 1/17/21, 8:38 PM
+ *   Last Modified: 1/22/21, 2:37 PM
  *
  *    Copyright 2021 AJ Romaniello
  *
@@ -106,9 +106,10 @@ public class YamlConfiguration extends FileConfiguration {
 
             if (value instanceof Map) {
                 this.convertMapsToSections((Map) value, section.createSection(key));
-            } else {
-                section.set(key, value);
+                return;
             }
+
+            section.set(key, value);
         }
     }
 
@@ -151,7 +152,7 @@ public class YamlConfiguration extends FileConfiguration {
         if (this.options().copyHeader()) {
             Configuration def = this.getDefaults();
             if (def instanceof FileConfiguration) {
-                FileConfiguration filedefaults = (FileConfiguration)def;
+                FileConfiguration filedefaults = (FileConfiguration) def;
                 String defaultsHeader = filedefaults.buildHeader();
 
                 if (defaultsHeader.length() > 0) {
@@ -175,9 +176,9 @@ public class YamlConfiguration extends FileConfiguration {
             }
 
             return builder.toString();
-        } else {
-            return "";
         }
+
+        return "";
     }
 
     /**
@@ -218,9 +219,8 @@ public class YamlConfiguration extends FileConfiguration {
      * @return the reader as a YamlConfiguration object.
      */
     @NotNull
-    public static YamlConfiguration loadConfiguration(@NotNull Reader reader) { ;
+    public static YamlConfiguration loadConfiguration(@NotNull Reader reader) {
         YamlConfiguration config = new YamlConfiguration();
-
         try {
             config.load(reader);
         } catch (IOException | InvalidConfigurationException e) {
