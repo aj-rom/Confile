@@ -26,8 +26,27 @@ Under construction...
 ## API Usage
 Documentation can be found [here](confile.coachlucl.io)
 
+```Java
+// Easily create a new YamlConfiguration from any file
+File yamlFile = new File("some-yaml.yml")
+
+// Then its as easy as loading it into a YamlConfiguration as this
+YamlConfiguration yamlConfig = YamlConfiguration.load(yamlFile)
+
+// Now you can view/change keys and their values
+yamlConfig.getString("Hello") // should get the string value at the 'Hello' key of the yaml file if non existang it will be null
+
+// You can also set new keys and values or replace existing ones
+yamlConfig.set("Hello", "Hello World!)
+
+// To then save the changes to our file we could call or not if you would like to maintain file integrity.
+yamlConfig.save(yamlFile)
+
+```
+
 ### Get with Maven
 
+#### Setting up the repository
 Copy and paste the following into your **pom.xml** file.
 ```XML
 <repositories>
@@ -45,7 +64,7 @@ Copy and paste the following into your **pom.xml** file.
 </repositories>
 ```
 
-### Choosing a project
+#### Choosing a project
 
 Based off of your needs you can get any of the projects individually.
 ```XML
