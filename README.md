@@ -77,4 +77,4 @@ Under construction
 ## License
 This project is licensed under the Apache License v2.0. Check out the [LICENSE](https://github.com/CoachLuck/Confile/blob/main/LICENSE) for more information.
 
-Apache License v2.0 © A.J. Romaniello
+Apache License v2.0 © [A.J. Romaniello](https://github.com/CoachLuck)
