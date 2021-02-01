@@ -11,7 +11,8 @@ Doumenation can be found at my website [here](https://confile.coachluck.io).
 I wanted to make this publically accessible because I have found it very useful to be able to easily convert files into objects within Java. This also is the core for my project TransFile, that is underdevelopment focusing on translating any nested structured file while maintaing key, value structure.
 
 ## Code Style & Status
-* Badges here *
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/46a1abe29c9548909ad142206973f31d)](https://www.codacy.com/gh/CoachLuck/Confile/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CoachLuck/Confile&amp;utm_campaign=Badge_Grade)
+
 Conform to the code style by Google found [here](https://google.github.io/styleguide/javaguide.html)
 
 ## Frameworks used
