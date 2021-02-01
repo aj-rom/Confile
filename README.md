@@ -7,8 +7,26 @@ Doumenation can be found at my website [here](https://confile.coachluck.io).
 - [X] YAML
 - [ ] TXT
 
+## Motivation
+I wanted to make this publically accessible because I have found it very useful to be able to easily convert files into objects within Java. This also is the core for my project TransFile, that is underdevelopment focusing on translating any nested structured file while maintaing key, value structure.
 
-## Get with Maven
+## Code Style & Status
+* Badges here *
+Conform to the code style by Google found [here](https://google.github.io/styleguide/javaguide.html)
+
+## Frameworks used
+Lombok for simpilized getter/setter methods, and SnakeYaml for reading and writing from Yaml files.
+
+- [Lombok](https://projectlombok.org/)
+- [SnakeYaml](https://mvnrepository.com/artifact/org.yaml/snakeyaml)
+
+## Features
+Under construction...
+
+## API Usage
+Documentation can be found [here](confile.coachlucl.io)
+
+### Get with Maven
 
 Copy and paste the following into your **pom.xml** file.
 ```XML
@@ -49,3 +67,14 @@ Based off of your needs you can get any of the projects individually.
     
 </dependencies>
 ```
+
+## Tests
+Under construction
+
+## Contribute
+Under construction
+
+## License
+This project is licensed under the Apache License v2.0. Check out the [LICENSE](https://github.com/CoachLuck/Confile/blob/main/LICENSE) for more information.
+
+Apache License v2.0 © A.J. Romaniello
