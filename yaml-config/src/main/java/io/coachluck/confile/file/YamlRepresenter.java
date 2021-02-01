@@ -40,7 +40,6 @@ public class YamlRepresenter extends Representer {
     }
 
     private class RepresentConfigurationSection extends RepresentMap {
-        private RepresentConfigurationSection() { }
 
         @NotNull
         public Node representData(@NotNull Object data) {
@@ -49,7 +48,6 @@ public class YamlRepresenter extends Representer {
     }
 
     private class RepresentConfigurationSerializable extends RepresentMap {
-        private RepresentConfigurationSerializable() { }
 
         @NotNull
         public Node representData(@NotNull Object data) {

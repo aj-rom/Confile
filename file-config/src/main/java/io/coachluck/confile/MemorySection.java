@@ -25,14 +25,8 @@ import io.coachluck.confile.serialization.ConfigurationSerializable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
 
 public class MemorySection implements ConfigurationSection {
     protected final Map<String, Object> map = new LinkedHashMap<>();
@@ -94,7 +88,7 @@ public class MemorySection implements ConfigurationSection {
     }
 
     public boolean contains(@NotNull String path, boolean ignoreDefault) {
-        return (ignoreDefault ? this.get(path, (Object) null) : this.get(path)) != null;
+        return (ignoreDefault ? this.get(path, null) : this.get(path)) != null;
     }
 
     public boolean isSet(@NotNull String path) {
@@ -104,7 +98,7 @@ public class MemorySection implements ConfigurationSection {
         } else if (root.options().copyDefaults()) {
             return this.contains(path);
         } else {
-            return this.get(path, (Object) null) != null;
+            return this.get(path, null) != null;
         }
     }
 
@@ -289,7 +283,7 @@ public class MemorySection implements ConfigurationSection {
     @Nullable
     public List<?> getList(@NotNull String path) {
         Object def = this.getDefault(path);
-        return this.getList(path, def instanceof List ? (List)def : null);
+        return this.getList(path, def instanceof List ? (List) def : null);
     }
 
     @Nullable
@@ -401,7 +395,7 @@ public class MemorySection implements ConfigurationSection {
      */
     @Nullable
     public ConfigurationSection getConfigurationSection(@NotNull String path) {
-        Object val = this.get(path, (Object) null);
+        Object val = this.get(path, null);
         if (val != null) {
             return val instanceof ConfigurationSection ? (ConfigurationSection)val : null;
         } else {
@@ -501,27 +495,27 @@ public class MemorySection implements ConfigurationSection {
         Configuration root = section.getRoot();
         if (root == null) {
             throw new IllegalStateException("Can't create path without a root");
-        } else {
-            char separator = root.options().pathSeparator();
-            StringBuilder builder = new StringBuilder();
-            for(ConfigurationSection parent = section; parent != null && parent != relativeTo; parent = parent.getParent()) {
-                if (builder.length() > 0) {
-                    builder.insert(0, separator);
-                }
-
-                builder.insert(0, parent.getName());
-            }
-
-            if (key != null && key.length() > 0) {
-                if (builder.length() > 0) {
-                    builder.append(separator);
-                }
-
-                builder.append(key);
-            }
-
-            return builder.toString();
         }
+
+        char separator = root.options().pathSeparator();
+        StringBuilder builder = new StringBuilder();
+        for (ConfigurationSection parent = section; parent != null && parent != relativeTo; parent = parent.getParent()) {
+            if (builder.length() > 0) {
+                builder.insert(0, separator);
+            }
+
+            builder.insert(0, parent.getName());
+        }
+
+        if (key != null && key.length() > 0) {
+            if (builder.length() > 0) {
+                builder.append(separator);
+            }
+
+            builder.append(key);
+        }
+
+        return builder.toString();
     }
 
     public String toString() {
