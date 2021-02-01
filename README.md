@@ -1,4 +1,4 @@
-# Confile
+# Confile ( CURRENTLY IN ALPHA )
 A Java library that converts any .yml file into a quarriable (FileConfiguration) object. Specifically focused on getting and setting strings of a key/value pair.
 
 Doumenation can be found at my website [here](https://confile.coachluck.io).
